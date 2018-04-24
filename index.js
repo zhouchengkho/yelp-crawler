@@ -14,6 +14,10 @@ if(!count) {
   console.log(usage);
   return;
 }
+if (count > 1000) {
+  console.log("yelp has offset limit of 1000, only top 1000 results of each category will be crawled");
+  count = 1000;
+}
 
 let categoryTotalChecked = false;
 let categoryTotal = 0;
