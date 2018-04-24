@@ -1,0 +1,6 @@
+module.exports = {
+    YELP_AUTH: "Bearer YOUR_API_KEY",
+    YELP_URL: "https://api.yelp.com/v3/businesses/search",
+    YELP_CATEGORIES: ["chinese", "indian", "japanese", "korean", "american", "french", "pizza", "coffee"],
+    YELP_LOCATION: "manhattan"
+};
