@@ -5,6 +5,7 @@ const dynamo = new AWS.DynamoDB({
     region: config.AWS_REGION
 });
 const until = require("async/until");
+const moment = require("moment");
 
 fs.readFile("output.json", "utf8", (err, data) => {
     data = JSON.parse(data);
@@ -80,6 +81,7 @@ function transformToAmazonItem(item) {
     if (item.location && item.location.display_address) {
         result.address = {S: item.location.display_address[0] + "," + item.location.display_address[1]};
     }
+    result.created_at = {S: moment().format("YYYY-MM-DD HH:mm:ss")};
     return result;
 }
 
