@@ -9,7 +9,7 @@ if (args.length < 3) {
   console.log(usage);
   return;
 }
-const count = parseInt(args[2]);
+let count = parseInt(args[2]);
 if(!count) {
   console.log(usage);
   return;
@@ -24,6 +24,7 @@ let categoryTotal = 0;
 const categories = config.YELP_CATEGORIES;
 const location = config.YELP_LOCATION;
 let json = [];
+let seen = {};
 
 eachSeries(
   categories,
@@ -92,7 +93,8 @@ function batchPush(businesses, category) {
      * avoid duplication
      * this operation is costly, remove it if doesn't care about duplicates
      */
-    if (!json[business.id]) {
+    if (!seen[business.id]) {
+      seen[business.id] = true;
       business.category = category;
       json.push(business);
     }
